@@ -39,10 +39,15 @@ class Warehouse:
 
 	# Adds an item to the warehouse	
 	def add_item(self, item):
-		pass
+		self.items.append(item)
+		return self.items
+
 
 	# Returns the item in the warehouse with the most stock		
 	def get_max_stock(self):
+		# for item in self.items:
+		# 	if 
+		
 		pass
 	
 	# Returns the item in the warehouse with the highest price
@@ -70,11 +75,9 @@ class TestAllMethods(unittest.TestCase):
 		self.assertEqual(count_a("An animal ran away"), 6, "Test count_a")
 
 
-
-
 	## Check to see whether you can add an item to the warehouse
 	def test_add_item(self):
-		pass
+		self.assertEqual(self.item1.add_item(), "Beer", "Tested add_item")
 
 
 	## Check to see whether warehouse correctly returns the item with the most stock
@@ -84,6 +87,7 @@ class TestAllMethods(unittest.TestCase):
 
 	# Check to see whether the warehouse correctly return the item with the highest price
 	def test_warehouse_max_price(self):
+		# self.assertEqual(self.items.get_max_price(), )
 		pass
 		
 
