@@ -40,19 +40,29 @@ class Warehouse:
 	# Adds an item to the warehouse	
 	def add_item(self, item):
 		self.items.append(item)
+		
 		return self.items
 
 
 	# Returns the item in the warehouse with the most stock		
 	def get_max_stock(self):
-		# for item in self.items:
-		# 	if 
+		max_stock = self.items[0]
+		for item in self.items:
+			if max_stock.stock < item.stock:
+				max_stock = item
+
+		return max_stock
+
 		
-		pass
 	
 	# Returns the item in the warehouse with the highest price
 	def get_max_price(self):
-		pass	
+		max_price = self.items[0]
+		for item in self.items:
+			if max_price.price < item.price:
+				max_price = item
+
+		return max_price
 
 
 
@@ -77,18 +87,49 @@ class TestAllMethods(unittest.TestCase):
 
 	## Check to see whether you can add an item to the warehouse
 	def test_add_item(self):
-		self.assertEqual(self.item1.add_item(), "Beer", "Tested add_item")
+
+		w1 = Warehouse([self.item4, self.item5])
+
+		w1.add_item(self.item1)
+		self.assertEqual(len(w1.items), 3, "Tested add_item")
+
+		w1.add_item(self.item2)
+		self.assertEqual(len(w1.items), 4, "Tested add_item")
+
+		w1.add_item(self.item4)
+		self.assertEqual(len(w1.items), 5, "Tested add_item")
+
 
 
 	## Check to see whether warehouse correctly returns the item with the most stock
 	def test_warehouse_max_stocks(self):
-		pass
+
+		w2 = Warehouse()
+
+		w2.add_item(self.item1)
+		self.assertEqual(w2.get_max_stock(), self.item1, "Tested get_max_stock")
+
+		w2.add_item(self.item4)
+		self.assertEqual(w2.get_max_stock(), self.item4, "Tested get_max_stock")
+
+		w2.add_item(self.item5)
+		self.assertEqual(w2.get_max_stock(), self.item4, "Tested get_max_stock")
 
 
 	# Check to see whether the warehouse correctly return the item with the highest price
 	def test_warehouse_max_price(self):
-		# self.assertEqual(self.items.get_max_price(), )
-		pass
+
+		w3 = Warehouse([self.item1, self.item2])
+
+		w3.add_item(self.item3)
+		self.assertEqual(w3.get_max_price(), self.item1, "Tested get_max_price")
+
+		w3.add_item(self.item4)
+		self.assertEqual(w3.get_max_price(), self.item1, "Tested get_max_price")
+
+		w3.add_item(self.item5)
+		self.assertEqual(w3.get_max_price(), self.item1, "Tested get_max_price")
+
 		
 
 def main():
